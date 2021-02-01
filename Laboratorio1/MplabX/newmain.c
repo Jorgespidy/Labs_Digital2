@@ -47,13 +47,6 @@
 #define winner2 PORTDbits.RD4
 
 //******************************************************************************
-// Variables
-//******************************************************************************
-
-int cont = 0;
-int flag;
-
-//******************************************************************************
 // Prototipos de funciones
 //******************************************************************************
 void setup(void);
@@ -65,36 +58,50 @@ void semaforo(void);
 
 void main(void) {
     setup();
-    while (1){
-     if (Start){
-         semaforo();
-         while (winner1 == 0){
-             while (winner2 == 0){
-                 if (User1){
-                     if (PORTB == 0){
-                       
-                         PORTB = 1;
-                         __delay_ms(300);
-                     }
-                     else {
-                         PORTB = 2*PORTB;
-                         __delay_ms(300);
-                     }
-                 }
-                 if (User2){
-                     if (PORTC == 0){
-                         PORTC = 1;
-                         __delay_ms(300);
-                     }
-                     else {
-                         PORTC = 2*PORTC;
-                         __delay_ms(300);
-                     }
-                 }
-             }
-         }
-     }
-         
+    while (1) {
+        if (Start) {//revisa que el boton de start este presionado
+            semaforo();
+            while (winner1 == 0) { //comprueba si el led del ganador 1 esta apagado
+                while (winner2 == 0) { //comprueba si el led del ganador 2 esta apagado
+                    if (User1) {
+                        if (PORTB == 0) { //comprueba que el portb este vacio
+
+                            PORTB = 1; // setea el primer valor del contador
+                            __delay_ms(300);
+                        } else {
+                            if (PORTBbits.RB7 == 1) {
+                                PORTB = 0;//se reinicia el puerto del primer jugador
+                                PORTC = 0;// tambien el del segundo jugador para que el programa pare
+                                winner1 = 1;
+                                break;// para salir del segundo while
+                            } else {
+                                PORTB = 2 * PORTB;
+                                __delay_ms(300);
+                            }
+
+                        }
+                    }
+                    if (User2) {
+                        if (PORTC == 0) {
+                            PORTC = 1;
+                            __delay_ms(300);
+                        } else {
+                            if (PORTCbits.RC7 == 1) {
+                                PORTC = 0;
+                                PORTD = 0;
+                                winner2 = 1;
+                            }
+                            else{
+                                PORTC = 2 * PORTC;
+                                __delay_ms(300);
+                            }
+                        }
+                    }
+                }
+                break;//para salir del primer while
+            }
+        }
+
     }
     return;
 }
@@ -102,6 +109,7 @@ void main(void) {
 //******************************************************************************
 // Configuración
 //******************************************************************************
+
 void setup(void) {
     //Se limpian los puertos, ansel y triestados a utilizar
     PORTA = 0;
@@ -114,7 +122,6 @@ void setup(void) {
     TRISB = 0;
     TRISC = 0;
     TRISD = 0;
-    flag = 0;
     return;
 }
 //******************************************************************************
@@ -122,6 +129,8 @@ void setup(void) {
 //******************************************************************************
 
 void semaforo(void) {
+    winner1 = 0;
+    winner2 = 0;
     Rojo = 1;
     __delay_ms(1000);
     Rojo = 0;

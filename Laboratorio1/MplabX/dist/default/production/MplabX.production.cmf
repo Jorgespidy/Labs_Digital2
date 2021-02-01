@@ -12,14 +12,13 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\MplabX.production.o
-cinit CODE 0 7F8 7F8 8 2
-text1 CODE 0 737 737 14 2
-text2 CODE 0 74B 74B 36 2
-maintext CODE 0 781 781 77 2
+cinit CODE 0 7FC 7FC 4 2
+text1 CODE 0 72A 72A 12 2
+text2 CODE 0 73C 73C 38 2
+maintext CODE 0 774 774 88 2
 cstackCOMMON COMMON 1 70 70 6 1
-bssCOMMON COMMON 1 76 76 4 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\jorge\AppData\Local\Temp\sjl8.o
+$C:\Users\jorge\AppData\Local\Temp\s3kc.o
 end_init CODE 0 0 0 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -36,23 +35,23 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 3-736 2
+CONST 3-729 2
 CONST 800-1FFF 2
-ENTRY 3-736 2
+ENTRY 3-729 2
 ENTRY 800-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
-CODE 3-736 2
+CODE 3-729 2
 CODE 800-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 7A-7D 1
+COMMON 76-7D 1
 EEDATA 2100-21FF 2
-STRCODE 3-736 2
+STRCODE 3-729 2
 STRCODE 800-1FFF 2
-STRING 3-736 2
+STRING 3-729 2
 STRING 800-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -68,62 +67,69 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\MplabX.production.o
-7F8 cinit CODE >450:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7F8 cinit CODE >453:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7F8 cinit CODE >467:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7F9 cinit CODE >468:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7FA cinit CODE >469:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7FB cinit CODE >470:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7FC cinit CODE >476:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7FC cinit CODE >478:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-7FD cinit CODE >479:C:\Users\jorge\AppData\Local\Temp\sjl8.s
-74B text2 CODE >124:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-74B text2 CODE >125:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-74E text2 CODE >126:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-75B text2 CODE >127:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-75E text2 CODE >128:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-75F text2 CODE >129:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-76C text2 CODE >130:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-76F text2 CODE >131:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-770 text2 CODE >132:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-77D text2 CODE >133:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-780 text2 CODE >134:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-737 text1 CODE >105:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-737 text1 CODE >107:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-73A text1 CODE >108:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-73B text1 CODE >109:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-73C text1 CODE >110:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-73D text1 CODE >111:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-740 text1 CODE >112:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-741 text1 CODE >113:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-745 text1 CODE >114:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-746 text1 CODE >115:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-747 text1 CODE >116:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-748 text1 CODE >117:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-74A text1 CODE >119:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-781 maintext CODE >66:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-781 maintext CODE >67:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-786 maintext CODE >69:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-78C maintext CODE >70:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-791 maintext CODE >71:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-792 maintext CODE >72:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-792 maintext CODE >73:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-796 maintext CODE >74:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-79B maintext CODE >76:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-79D maintext CODE >77:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7AA maintext CODE >78:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7AB maintext CODE >80:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7AF maintext CODE >81:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7BC maintext CODE >84:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7C2 maintext CODE >85:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7C7 maintext CODE >86:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7C9 maintext CODE >87:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7D6 maintext CODE >88:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7D7 maintext CODE >90:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7DB maintext CODE >91:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7E8 maintext CODE >72:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7EE maintext CODE >71:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
-7EE maintext CODE >95:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7FC cinit CODE >453:C:\Users\jorge\AppData\Local\Temp\s3kc.s
+7FC cinit CODE >456:C:\Users\jorge\AppData\Local\Temp\s3kc.s
+7FC cinit CODE >462:C:\Users\jorge\AppData\Local\Temp\s3kc.s
+7FC cinit CODE >464:C:\Users\jorge\AppData\Local\Temp\s3kc.s
+7FD cinit CODE >465:C:\Users\jorge\AppData\Local\Temp\s3kc.s
+73C text2 CODE >131:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+73C text2 CODE >132:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+73F text2 CODE >133:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+740 text2 CODE >134:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+741 text2 CODE >135:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+74E text2 CODE >136:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+751 text2 CODE >137:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+752 text2 CODE >138:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+75F text2 CODE >139:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+762 text2 CODE >140:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+763 text2 CODE >141:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+770 text2 CODE >142:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+773 text2 CODE >143:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+72A text1 CODE >113:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+72A text1 CODE >115:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+72D text1 CODE >116:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+72E text1 CODE >117:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+72F text1 CODE >118:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+730 text1 CODE >119:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+733 text1 CODE >120:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+734 text1 CODE >121:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+738 text1 CODE >122:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+739 text1 CODE >123:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+73A text1 CODE >124:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+73B text1 CODE >126:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+774 maintext CODE >59:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+774 maintext CODE >60:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+779 maintext CODE >62:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+77F maintext CODE >63:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+784 maintext CODE >64:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+785 maintext CODE >65:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+785 maintext CODE >66:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+789 maintext CODE >67:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+78E maintext CODE >69:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+790 maintext CODE >70:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+79D maintext CODE >71:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+79E maintext CODE >72:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7A2 maintext CODE >73:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7A3 maintext CODE >74:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7A4 maintext CODE >75:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7A5 maintext CODE >76:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7A6 maintext CODE >78:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7AA maintext CODE >79:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7B7 maintext CODE >84:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7BD maintext CODE >85:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7C2 maintext CODE >86:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7C4 maintext CODE >87:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D1 maintext CODE >88:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D2 maintext CODE >89:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D6 maintext CODE >90:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D7 maintext CODE >91:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D8 maintext CODE >92:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7D9 maintext CODE >93:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7DA maintext CODE >95:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7DE maintext CODE >96:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7EB maintext CODE >65:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7F2 maintext CODE >64:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
+7F2 maintext CODE >102:D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio1\MplabX\newmain.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -138,37 +144,34 @@ $dist/default/production\MplabX.production.o
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\MplabX.production.o
 __Hspace_0 800 0 ABS 0 - -
-__Hspace_1 7A 0 ABS 0 - -
+__Hspace_1 76 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\sjl8.o
-_flag 76 0 COMMON 1 bssCOMMON dist/default/production\MplabX.production.o
-_main F02 0 CODE 0 maintext dist/default/production\MplabX.production.o
+___sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\s3kc.o
+_main EE8 0 CODE 0 maintext dist/default/production\MplabX.production.o
 btemp 7E 0 ABS 0 - dist/default/production\MplabX.production.o
-start 0 0 CODE 0 init C:\Users\jorge\AppData\Local\Temp\sjl8.o
+start 0 0 CODE 0 init C:\Users\jorge\AppData\Local\Temp\s3kc.o
 __size_of_main 0 0 ABS 0 - dist/default/production\MplabX.production.o
-__HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sjl8.o
-__LbssCOMMON 0 0 ABS 0 bssCOMMON -
+intlevel0 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\s3kc.o
 wtemp0 7E 0 ABS 0 - dist/default/production\MplabX.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELH 189 0 ABS 0 - dist/default/production\MplabX.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\sjl8.o
-___stacklo 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\sjl8.o
+___stackhi 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\s3kc.o
+___stacklo 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\s3kc.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\MplabX.production.o
-start_initialization FF0 0 CODE 0 cinit dist/default/production\MplabX.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\sjl8.o
+start_initialization FF8 0 CODE 0 cinit dist/default/production\MplabX.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\s3kc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -182,9 +185,11 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF0 0 CODE 0 cinit -
+__Lcinit FF8 0 CODE 0 cinit -
 __Lstack 0 0 STACK 2 stack -
 _PORTAbits 5 0 ABS 0 - dist/default/production\MplabX.production.o
+_PORTBbits 6 0 ABS 0 - dist/default/production\MplabX.production.o
+_PORTCbits 7 0 ABS 0 - dist/default/production\MplabX.production.o
 _PORTDbits 8 0 ABS 0 - dist/default/production\MplabX.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -204,31 +209,30 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __S0 800 0 ABS 0 - -
-__S1 7A 0 ABS 0 - -
+__S1 76 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jorge\AppData\Local\Temp\sjl8.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jorge\AppData\Local\Temp\s3kc.o
 __size_of_semaforo 0 0 ABS 0 - dist/default/production\MplabX.production.o
-__pmaintext F02 0 CODE 0 maintext dist/default/production\MplabX.production.o
+__pmaintext EE8 0 CODE 0 maintext dist/default/production\MplabX.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-_semaforo E96 0 CODE 0 text2 dist/default/production\MplabX.production.o
+_semaforo E78 0 CODE 0 text2 dist/default/production\MplabX.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-__pbssCOMMON 76 0 COMMON 1 bssCOMMON dist/default/production\MplabX.production.o
 __Lend_init 0 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__end_of_semaforo F02 0 CODE 0 text2 dist/default/production\MplabX.production.o
+__end_of_semaforo EE8 0 CODE 0 text2 dist/default/production\MplabX.production.o
 end_of_initialization FF8 0 CODE 0 cinit dist/default/production\MplabX.production.o
 __Hintentry 0 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 0 0 CODE 0 reset_vec -
-__ptext1 E6E 0 CODE 0 text1 dist/default/production\MplabX.production.o
-__ptext2 E96 0 CODE 0 text2 dist/default/production\MplabX.production.o
+__ptext1 E54 0 CODE 0 text1 dist/default/production\MplabX.production.o
+__ptext2 E78 0 CODE 0 text2 dist/default/production\MplabX.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -237,7 +241,7 @@ __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\MplabX.production.o
 __Hend_init 6 0 CODE 0 end_init -
-__end_of_main FF0 0 CODE 0 maintext dist/default/production\MplabX.production.o
+__end_of_main FF8 0 CODE 0 maintext dist/default/production\MplabX.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\MplabX.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\MplabX.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\MplabX.production.o
@@ -247,11 +251,11 @@ _TRISA 85 0 ABS 0 - dist/default/production\MplabX.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\MplabX.production.o
 _TRISC 87 0 ABS 0 - dist/default/production\MplabX.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\MplabX.production.o
-__end_of_setup E96 0 CODE 0 text1 dist/default/production\MplabX.production.o
+__end_of_setup E78 0 CODE 0 text1 dist/default/production\MplabX.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_setup E6E 0 CODE 0 text1 dist/default/production\MplabX.production.o
-__initialization FF0 0 CODE 0 cinit dist/default/production\MplabX.production.o
+_setup E54 0 CODE 0 text1 dist/default/production\MplabX.production.o
+__initialization FF8 0 CODE 0 cinit dist/default/production\MplabX.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -277,11 +281,11 @@ __initialization FF0 0 CODE 0 cinit dist/default/production\MplabX.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7F8 FF0 8 2
-text1 0 737 E6E 14 2
-text2 0 74B E96 36 2
-maintext 0 781 F02 77 2
-cstackCOMMON 1 70 70 A 1
+cinit 0 7FC FF8 4 2
+text1 0 72A E54 12 2
+text2 0 73C E78 38 2
+maintext 0 774 EE8 88 2
+cstackCOMMON 1 70 70 6 1
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

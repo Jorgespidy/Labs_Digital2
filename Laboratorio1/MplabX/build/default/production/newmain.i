@@ -2510,13 +2510,7 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 53 "newmain.c"
-int cont = 0;
-int flag;
-
-
-
-
+# 52 "newmain.c"
 void setup(void);
 void semaforo(void);
 
@@ -2526,39 +2520,54 @@ void semaforo(void);
 
 void main(void) {
     setup();
-    while (1){
-     if (PORTAbits.RA0){
-         semaforo();
-         while (PORTDbits.RD3 == 0){
-             while (PORTDbits.RD4 == 0){
-                 if (PORTAbits.RA1){
-                     if (PORTB == 0){
+    while (1) {
+        if (PORTAbits.RA0) {
+            semaforo();
+            while (PORTDbits.RD3 == 0) {
+                while (PORTDbits.RD4 == 0) {
+                    if (PORTAbits.RA1) {
+                        if (PORTB == 0) {
 
-                         PORTB = 1;
-                         _delay((unsigned long)((300)*(8000000/4000.0)));
-                     }
-                     else {
-                         PORTB = 2*PORTB;
-                         _delay((unsigned long)((300)*(8000000/4000.0)));
-                     }
-                 }
-                 if (PORTAbits.RA2){
-                     if (PORTC == 0){
-                         PORTC = 1;
-                         _delay((unsigned long)((300)*(8000000/4000.0)));
-                     }
-                     else {
-                         PORTC = 2*PORTC;
-                         _delay((unsigned long)((300)*(8000000/4000.0)));
-                     }
-                 }
-             }
-         }
-     }
+                            PORTB = 1;
+                            _delay((unsigned long)((300)*(8000000/4000.0)));
+                        } else {
+                            if (PORTBbits.RB7 == 1) {
+                                PORTB = 0;
+                                PORTC = 0;
+                                PORTDbits.RD3 = 1;
+                                break;
+                            } else {
+                                PORTB = 2 * PORTB;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                            }
+
+                        }
+                    }
+                    if (PORTAbits.RA2) {
+                        if (PORTC == 0) {
+                            PORTC = 1;
+                            _delay((unsigned long)((300)*(8000000/4000.0)));
+                        } else {
+                            if (PORTCbits.RC7 == 1) {
+                                PORTC = 0;
+                                PORTD = 0;
+                                PORTDbits.RD4 = 1;
+                            }
+                            else{
+                                PORTC = 2 * PORTC;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+        }
 
     }
     return;
 }
+
 
 
 
@@ -2575,7 +2584,6 @@ void setup(void) {
     TRISB = 0;
     TRISC = 0;
     TRISD = 0;
-    flag = 0;
     return;
 }
 
@@ -2583,6 +2591,8 @@ void setup(void) {
 
 
 void semaforo(void) {
+    PORTDbits.RD3 = 0;
+    PORTDbits.RD4 = 0;
     PORTDbits.RD0 = 1;
     _delay((unsigned long)((1000)*(8000000/4000.0)));
     PORTDbits.RD0 = 0;
