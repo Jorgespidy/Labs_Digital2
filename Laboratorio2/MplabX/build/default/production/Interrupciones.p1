@@ -45,6 +45,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2416: extern volatile unsigned char IOCB __attribute__((address(0x096)));
 [v _IOCB `Vuc ~T0 @X0 0 e@150 ]
 [p mainexit ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
+"1251 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1251:     struct {
+[s S45 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
+[n S45 . ADON GO_nDONE CHS ADCS ]
+"1257
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1257:     struct {
+[s S46 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S46 . . GO CHS0 CHS1 CHS2 CHS3 ADCS0 ADCS1 ]
+"1267
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1267:     struct {
+[s S47 :1 `uc 1 :1 `uc 1 ]
+[n S47 . . nDONE ]
+"1271
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1271:     struct {
+[s S48 :1 `uc 1 :1 `uc 1 ]
+[n S48 . . GO_DONE ]
+"1250
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1250: typedef union {
+[u S44 `S45 1 `S46 1 `S47 1 `S48 1 ]
+[n S44 . . . . . ]
+"1276
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1276: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x01F)));
+[v _ADCON0bits `VS44 ~T0 @X0 0 e@31 ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 "465
@@ -73,6 +100,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "245
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
 [v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
+"543
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 543:     struct {
+[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+"542
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 542: typedef union {
+[u S18 `S19 1 ]
+[n S18 . . ]
+"553
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
+[v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"1238
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
+[v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -331,135 +372,172 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V  =  BOR40V    ]
 "34
 [p x WRT  =  OFF         ]
+"44
+[; ;Interrupciones.c: 44: uint8_t ADC;
+[v _ADC `uc ~T0 @X0 1 e ]
 "45
-[; ;Interrupciones.c: 45: void setup(void) {
+[; ;Interrupciones.c: 45: uint8_t MSB;
+[v _MSB `uc ~T0 @X0 1 e ]
+"46
+[; ;Interrupciones.c: 46: uint8_t LSB;
+[v _LSB `uc ~T0 @X0 1 e ]
+"52
+[; ;Interrupciones.c: 52: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"47
-[; ;Interrupciones.c: 47:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
-"48
-[; ;Interrupciones.c: 48:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
-"49
-[; ;Interrupciones.c: 49:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
-"50
-[; ;Interrupciones.c: 50:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
-"51
-[; ;Interrupciones.c: 51:     ANSELH = 0b00000001;
-[e = _ANSELH -> -> 1 `i `uc ]
-"52
-[; ;Interrupciones.c: 52:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
-"53
-[; ;Interrupciones.c: 53:     TRISB = 0b00000111;
-[e = _TRISB -> -> 7 `i `uc ]
 "54
-[; ;Interrupciones.c: 54:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;Interrupciones.c: 54:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "55
-[; ;Interrupciones.c: 55:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;Interrupciones.c: 55:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "56
-[; ;Interrupciones.c: 56:     ADCON0 = 0b00100001;
-[e = _ADCON0 -> -> 33 `i `uc ]
+[; ;Interrupciones.c: 56:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "57
-[; ;Interrupciones.c: 57:     ADCON1 = 0b00000000;
-[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;Interrupciones.c: 57:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
 "58
-[; ;Interrupciones.c: 58:     INTCON = 0b11001000;
-[e = _INTCON -> -> 200 `i `uc ]
+[; ;Interrupciones.c: 58:     ANSELH = 0b00000001;
+[e = _ANSELH -> -> 1 `i `uc ]
 "59
-[; ;Interrupciones.c: 59:     PIE1 = 0b01000010;
-[e = _PIE1 -> -> 66 `i `uc ]
+[; ;Interrupciones.c: 59:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
 "60
-[; ;Interrupciones.c: 60:     PR2 = 255;
-[e = _PR2 -> -> 255 `i `uc ]
+[; ;Interrupciones.c: 60:     TRISB = 0b00000111;
+[e = _TRISB -> -> 7 `i `uc ]
 "61
-[; ;Interrupciones.c: 61:     IOCB = 0b00000011;
-[e = _IOCB -> -> 3 `i `uc ]
+[; ;Interrupciones.c: 61:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
+"62
+[; ;Interrupciones.c: 62:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "63
-[; ;Interrupciones.c: 63:     return;
-[e $UE 138  ]
+[; ;Interrupciones.c: 63:     ADCON0 = 0b00100001;
+[e = _ADCON0 -> -> 33 `i `uc ]
 "64
-[; ;Interrupciones.c: 64: }
+[; ;Interrupciones.c: 64:     ADCON1 = 0b00000000;
+[e = _ADCON1 -> -> 0 `i `uc ]
+"65
+[; ;Interrupciones.c: 65:     INTCON = 0b11001000;
+[e = _INTCON -> -> 200 `i `uc ]
+"66
+[; ;Interrupciones.c: 66:     PIE1 = 0b01000010;
+[e = _PIE1 -> -> 66 `i `uc ]
+"67
+[; ;Interrupciones.c: 67:     PR2 = 255;
+[e = _PR2 -> -> 255 `i `uc ]
+"68
+[; ;Interrupciones.c: 68:     IOCB = 0b00000011;
+[e = _IOCB -> -> 3 `i `uc ]
+"70
+[; ;Interrupciones.c: 70:     return;
+[e $UE 138  ]
+"71
+[; ;Interrupciones.c: 71: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"71
-[; ;Interrupciones.c: 71: void main(void) {
+"77
+[; ;Interrupciones.c: 77: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"72
-[; ;Interrupciones.c: 72:     setup();
+"78
+[; ;Interrupciones.c: 78:     setup();
 [e ( _setup ..  ]
-"73
-[; ;Interrupciones.c: 73:     while(1){
+"79
+[; ;Interrupciones.c: 79:     while (1) {
 [e :U 141 ]
 {
-"75
-[; ;Interrupciones.c: 75:     }
+"80
+[; ;Interrupciones.c: 80:         _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"81
+[; ;Interrupciones.c: 81:         if (ADCON0bits.GO == 0) {
+[e $ ! == -> . . _ADCON0bits 1 1 `i -> 0 `i 143  ]
+{
+"82
+[; ;Interrupciones.c: 82:             (ADCON0bits.GO = 1);
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+"83
+[; ;Interrupciones.c: 83:         }
+}
+[e :U 143 ]
+"84
+[; ;Interrupciones.c: 84:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"77
-[; ;Interrupciones.c: 77:     return;
+"86
+[; ;Interrupciones.c: 86:     return;
 [e $UE 139  ]
-"78
-[; ;Interrupciones.c: 78: }
+"87
+[; ;Interrupciones.c: 87: }
 [e :UE 139 ]
 }
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-"83
-[; ;Interrupciones.c: 83: void __attribute__((picinterrupt(("")))) ISR(void){
+"93
+[; ;Interrupciones.c: 93: void __attribute__((picinterrupt(("")))) ISR(void) {
 [v _ISR `(v ~T1 @X0 1 ef ]
 {
 [e :U _ISR ]
 [f ]
-"84
-[; ;Interrupciones.c: 84:     if (INTCONbits.RBIF == 1){
-[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 144  ]
+"94
+[; ;Interrupciones.c: 94:     if (INTCONbits.RBIF == 1) {
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 145  ]
 {
-"85
-[; ;Interrupciones.c: 85:         if (PORTBbits.RB0 == 1){
-[e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 145  ]
+"95
+[; ;Interrupciones.c: 95:         if (PORTBbits.RB0 == 1) {
+[e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 146  ]
 {
-"86
-[; ;Interrupciones.c: 86:             PORTA++;
+"96
+[; ;Interrupciones.c: 96:             PORTA++;
 [e ++ _PORTA -> -> 1 `i `Vuc ]
-"87
-[; ;Interrupciones.c: 87:             INTCONbits.RBIF = 0;
+"97
+[; ;Interrupciones.c: 97:             INTCONbits.RBIF = 0;
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"88
-[; ;Interrupciones.c: 88:         }
-}
-[e :U 145 ]
-"89
-[; ;Interrupciones.c: 89:         if (PORTBbits.RB1 == 1) {
-[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 146  ]
-{
-"90
-[; ;Interrupciones.c: 90:             PORTA--;
-[e -- _PORTA -> -> 1 `i `Vuc ]
-"91
-[; ;Interrupciones.c: 91:             INTCONbits.RBIF = 0;
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"92
-[; ;Interrupciones.c: 92:         }
+"98
+[; ;Interrupciones.c: 98:         }
 }
 [e :U 146 ]
-"93
-[; ;Interrupciones.c: 93:     }
+"99
+[; ;Interrupciones.c: 99:         if (PORTBbits.RB1 == 1) {
+[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 147  ]
+{
+"100
+[; ;Interrupciones.c: 100:             PORTA--;
+[e -- _PORTA -> -> 1 `i `Vuc ]
+"101
+[; ;Interrupciones.c: 101:             INTCONbits.RBIF = 0;
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"102
+[; ;Interrupciones.c: 102:         }
 }
-[e :U 144 ]
-"94
-[; ;Interrupciones.c: 94: }
-[e :UE 143 ]
+[e :U 147 ]
+"103
+[; ;Interrupciones.c: 103:     }
+}
+[e :U 145 ]
+"104
+[; ;Interrupciones.c: 104:     if (PIR1bits.ADIF == 1) {
+[e $ ! == -> . . _PIR1bits 0 6 `i -> 1 `i 148  ]
+{
+"105
+[; ;Interrupciones.c: 105:         ADC = ADRESH;
+[e = _ADC _ADRESH ]
+"106
+[; ;Interrupciones.c: 106:         PIR1bits.ADIF = 0;
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+"108
+[; ;Interrupciones.c: 108:     }
+}
+[e :U 148 ]
+"109
+[; ;Interrupciones.c: 109: }
+[e :UE 144 ]
 }

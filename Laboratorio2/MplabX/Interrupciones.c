@@ -39,6 +39,13 @@
 #define down PORTBbits.RB1
 
 //******************************************************************************
+// Variables
+//******************************************************************************
+uint8_t ADC;
+uint8_t MSB;
+uint8_t LSB;
+
+//******************************************************************************
 // Configuración
 //******************************************************************************
 
@@ -59,7 +66,7 @@ void setup(void) {
     PIE1 = 0b01000010; // ADIE enable y enable del timer 2
     PR2 = 255; // tasa de polleo del timer 2
     IOCB = 0b00000011; // solo activan interrupciones RB0 y RB1
-    
+
     return;
 }
 
@@ -67,22 +74,25 @@ void setup(void) {
 // Ciclo principal
 //******************************************************************************
 
-
 void main(void) {
     setup();
-    while(1){
-        
+    while (1) {
+        __delay_ms(20);
+        if (ADCON0bits.GO == 0) {//Activa la bandera de conversion de conversiones ADC cada 10ms
+            (ADCON0bits.GO = 1);
+        }
     }
-   
+
     return;
 }
 
 //******************************************************************************
 // Interrupciones
 //******************************************************************************
-void __interrupt() ISR(void){
-    if (INTCONbits.RBIF == 1){
-        if (up == 1){
+
+void __interrupt() ISR(void) {
+    if (INTCONbits.RBIF == 1) {
+        if (up == 1) {
             PORTA++;
             INTCONbits.RBIF = 0;
         }
@@ -90,6 +100,11 @@ void __interrupt() ISR(void){
             PORTA--;
             INTCONbits.RBIF = 0;
         }
+    }
+    if (PIR1bits.ADIF == 1) {
+        ADC = ADRESH;
+        PIR1bits.ADIF = 0;
+
     }
 }
 

@@ -2645,7 +2645,15 @@ typedef uint16_t uintptr_t;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 45 "Interrupciones.c"
+# 44 "Interrupciones.c"
+uint8_t ADC;
+uint8_t MSB;
+uint8_t LSB;
+
+
+
+
+
 void setup(void) {
 
     PORTA = 0;
@@ -2671,11 +2679,13 @@ void setup(void) {
 
 
 
-
 void main(void) {
     setup();
-    while(1){
-
+    while (1) {
+        _delay((unsigned long)((20)*(8000000/4000.0)));
+        if (ADCON0bits.GO == 0) {
+            (ADCON0bits.GO = 1);
+        }
     }
 
     return;
@@ -2684,9 +2694,10 @@ void main(void) {
 
 
 
-void __attribute__((picinterrupt(("")))) ISR(void){
-    if (INTCONbits.RBIF == 1){
-        if (PORTBbits.RB0 == 1){
+
+void __attribute__((picinterrupt(("")))) ISR(void) {
+    if (INTCONbits.RBIF == 1) {
+        if (PORTBbits.RB0 == 1) {
             PORTA++;
             INTCONbits.RBIF = 0;
         }
@@ -2694,5 +2705,10 @@ void __attribute__((picinterrupt(("")))) ISR(void){
             PORTA--;
             INTCONbits.RBIF = 0;
         }
+    }
+    if (PIR1bits.ADIF == 1) {
+        ADC = ADRESH;
+        PIR1bits.ADIF = 0;
+
     }
 }
