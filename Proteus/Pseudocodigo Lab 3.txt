@@ -1,0 +1,28 @@
+
+void main (void) {
+loop{
+	if (end adc == 1){
+	end adc =0
+	if (pote == 1)
+	chan1 = 1
+	ADCON0.bits.GO =1 
+	else	
+	chan1 = 0
+	chan2 = 1
+	ADCON0.bits.GO =1 
+
+}
+
+}
+// interrupciones
+
+if (PIR1bits.TMR2IF == 1)
+	end adc = 1
+	PIR1bits.TMR2IF = 0
+	TMR2 = 255
+
+
+if (PIR1bits.ADIF == 1) {// interrupciones del ADC
+        ADC = ADRESH;
+        PIR1bits.ADIF = 0;
+    }
