@@ -12,6 +12,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include "Display.h"
 
 //******************************************************************************
 // Palabra de configuración
@@ -37,6 +38,8 @@
 
 #define up PORTBbits.RB0
 #define down PORTBbits.RB1
+#define disp1 PORTDbits.RD0
+#define disp2 PORTDbits.RD1
 
 //******************************************************************************
 // Variables
@@ -44,6 +47,7 @@
 uint8_t ADC;
 uint8_t MSB;
 uint8_t LSB;
+uint8_t num;
 
 //******************************************************************************
 // Configuración
@@ -81,6 +85,14 @@ void main(void) {
         if (ADCON0bits.GO == 0) {//Activa la bandera de conversion de conversiones ADC cada 10ms
             (ADCON0bits.GO = 1);
         }
+        if (disp2 == 1){
+            LSB = ADC & 0b00001111;
+            Display (LSB);
+        }
+        else{
+            MSB = ADC >> 4;
+            Display (MSB);
+        }
     }
 
     return;
@@ -91,8 +103,8 @@ void main(void) {
 //******************************************************************************
 
 void __interrupt() ISR(void) {
-    if (INTCONbits.RBIF == 1) {
-        if (up == 1) {
+    if (INTCONbits.RBIF == 1) {//interrupaciones del contador binario
+        if (up == 1) {//verifica si esta presionado el boton de aumentar contador
             PORTA++;
             INTCONbits.RBIF = 0;
         }
@@ -101,10 +113,21 @@ void __interrupt() ISR(void) {
             INTCONbits.RBIF = 0;
         }
     }
-    if (PIR1bits.ADIF == 1) {
+    if (PIR1bits.ADIF == 1) {// interrupciones del ADC
         ADC = ADRESH;
         PIR1bits.ADIF = 0;
-
+    }
+    if (PIR1bits.TMR2IF == 1){// interrupciones del multiplexado de displays
+        if (disp2 == 1){// verifica si esta encendido el display 2
+            disp2 = 0;
+            disp1 = 1;
+            PIR1bits.TMR2IF = 0;
+        }
+        else{
+            disp2 = 1;
+            disp1 = 0;
+            PIR1bits.TMR2IF = 0;
+        }
     }
 }
 
@@ -114,3 +137,4 @@ void __interrupt() ISR(void) {
 //******************************************************************************
 // Funciones
 //******************************************************************************
+

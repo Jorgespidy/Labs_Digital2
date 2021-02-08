@@ -11,15 +11,17 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"52 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Interrupciones.c
+"2 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Display.c
+[v _Display Display `(v  1 e 1 0 ]
+"56 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Interrupciones.c
 [v _setup setup `(v  1 e 1 0 ]
-"77
+"81
 [v _main main `(v  1 e 1 0 ]
-"93
+"105
 [v _ISR ISR `II(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S121 . 1 `uc 1 RB0 1 0 :1:0 
+[s S147 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -29,15 +31,27 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "245
-[u S130 . 1 `S121 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES130  1 e 1 @6 ]
+[u S156 . 1 `S147 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES156  1 e 1 @6 ]
 "290
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S89 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"369
+[u S98 . 1 `S89 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES98  1 e 1 @8 ]
 "459
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
-[s S89 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S115 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -47,14 +61,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S98 . 1 `uc 1 . 1 0 :2:0 
+[s S124 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S103 . 1 `S89 1 . 1 0 `S98 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES103  1 e 1 @11 ]
-[s S142 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S129 . 1 `S115 1 . 1 0 `S124 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES129  1 e 1 @11 ]
+[s S168 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -63,8 +77,8 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S150 . 1 `S142 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES150  1 e 1 @12 ]
+[u S176 . 1 `S168 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES176  1 e 1 @12 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1245
@@ -112,20 +126,30 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"44 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Interrupciones.c
+"47 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Interrupciones.c
 [v _ADC ADC `uc  1 e 1 0 ]
-"77
+"48
+[v _MSB MSB `uc  1 e 1 0 ]
+"49
+[v _LSB LSB `uc  1 e 1 0 ]
+"81
 [v _main main `(v  1 e 1 0 ]
 {
-"87
+"99
 } 0
-"52
+"56
 [v _setup setup `(v  1 e 1 0 ]
 {
-"71
+"75
 } 0
-"93
+"2 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Display.c
+[v _Display Display `(v  1 e 1 0 ]
+{
+[v Display@num num `i  1 p 2 3 ]
+"39
+} 0
+"105 D:\Jorge Castillo Palomo\UVG\Septimo Semestre\Digital 2\Laboratorio2\MplabX\Interrupciones.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"109
+"132
 } 0

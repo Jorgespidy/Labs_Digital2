@@ -1,4 +1,4 @@
-# 1 "Interrupciones.c"
+# 1 "Display.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Interrupciones.c" 2
-# 13 "Interrupciones.c"
+# 1 "Display.c" 2
+# 1 "./Display.h" 1
+# 15 "./Display.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,252 +2489,47 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 13 "Interrupciones.c" 2
+# 15 "./Display.h" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int8_t;
 
-
-
-
-
-
-typedef signed int int16_t;
-
-
-
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-
-
-
-typedef signed long int int32_t;
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint8_t;
-
-
-
-
-
-typedef unsigned int uint16_t;
-
-
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-
-
-typedef unsigned long int uint32_t;
-# 88 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_least8_t;
-
-
-
-
-
-
-
-typedef signed int int_least16_t;
-# 109 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_least24_t;
-# 118 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed long int int_least32_t;
-# 136 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_least8_t;
-
-
-
-
-
-
-typedef unsigned int uint_least16_t;
-# 154 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_least24_t;
-
-
-
-
-
-
-
-typedef unsigned long int uint_least32_t;
-# 181 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_fast8_t;
-
-
-
-
-
-
-typedef signed int int_fast16_t;
-# 200 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_fast24_t;
-
-
-
-
-
-
-
-typedef signed long int int_fast32_t;
-# 224 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_fast8_t;
-
-
-
-
-
-typedef unsigned int uint_fast16_t;
-# 240 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_fast24_t;
-
-
-
-
-
-
-typedef unsigned long int uint_fast32_t;
-# 268 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef int32_t intmax_t;
-# 282 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef uint32_t uintmax_t;
-
-
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-# 14 "Interrupciones.c" 2
-
-# 1 "./Display.h" 1
-# 17 "./Display.h"
 void Display(int num);
-# 15 "Interrupciones.c" 2
+# 1 "Display.c" 2
 
+void Display(int num) {
+    switch (num) {
+        case 0:
+            PORTC = 0X3F;
+            break;
+        case 1:
+            PORTC = 0X06;
+            break;
+        case 2:
+            PORTC = 0X5B;
+            break;
+        case 3:
+            PORTC = 0X4F;
+            break;
+        case 4:
+            PORTC = 0X66;
+            break;
+        case 5:
+            PORTC = 0X6D;
+            break;
+        case 6:
+            PORTC = 0X7D;
+            break;
+        case 7:
+            PORTC = 0X07;
+            break;
+        case 8:
+            PORTC = 0X7F;
+            break;
+        case 9:
+            PORTC = 0X6F;
+            break;
+        default:
 
+            break;
 
-
-
-
-
-#pragma config FOSC = XT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 47 "Interrupciones.c"
-uint8_t ADC;
-uint8_t MSB;
-uint8_t LSB;
-uint8_t num;
-
-
-
-
-
-void setup(void) {
-
-    PORTA = 0;
-    PORTC = 0;
-    PORTD = 0;
-    ANSEL = 0;
-    ANSELH = 0b00000001;
-    TRISA = 0;
-    TRISB = 0b00000111;
-    TRISC = 0;
-    TRISD = 0;
-    ADCON0 = 0b00100001;
-    ADCON1 = 0b00000000;
-    INTCON = 0b11001000;
-    PIE1 = 0b01000010;
-    PR2 = 255;
-    IOCB = 0b00000011;
-
-    return;
-}
-
-
-
-
-
-void main(void) {
-    setup();
-    while (1) {
-        _delay((unsigned long)((20)*(8000000/4000.0)));
-        if (ADCON0bits.GO == 0) {
-            (ADCON0bits.GO = 1);
-        }
-        if (PORTDbits.RD1 == 1){
-            LSB = ADC & 0b00001111;
-            Display (LSB);
-        }
-        else{
-            MSB = ADC >> 4;
-            Display (MSB);
-        }
-    }
-
-    return;
-}
-
-
-
-
-
-void __attribute__((picinterrupt(("")))) ISR(void) {
-    if (INTCONbits.RBIF == 1) {
-        if (PORTBbits.RB0 == 1) {
-            PORTA++;
-            INTCONbits.RBIF = 0;
-        }
-        if (PORTBbits.RB1 == 1) {
-            PORTA--;
-            INTCONbits.RBIF = 0;
-        }
-    }
-    if (PIR1bits.ADIF == 1) {
-        ADC = ADRESH;
-        PIR1bits.ADIF = 0;
-    }
-    if (PIR1bits.TMR2IF == 1){
-        if (PORTDbits.RD1 == 1){
-            PORTDbits.RD1 = 0;
-            PORTDbits.RD0 = 1;
-            PIR1bits.TMR2IF = 0;
-        }
-        else{
-            PORTDbits.RD1 = 1;
-            PORTDbits.RD0 = 0;
-            PIR1bits.TMR2IF = 0;
-        }
     }
 }
