@@ -587,8 +587,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "110
 [; ;LCD.c: 110:             break;
 [e $U 155  ]
+"111
+[; ;LCD.c: 111:         default:
+[e :U 167 ]
+"112
+[; ;LCD.c: 112:             ret = 0X40;
+[e = _ret -> -> 64 `i `uc ]
 "113
-[; ;LCD.c: 113:     }
+[; ;LCD.c: 113:             break;
+[e $U 155  ]
+"115
+[; ;LCD.c: 115:     }
 }
 [e $U 155  ]
 [e :U 156 ]
@@ -602,9 +611,9 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 7 `i 164
  , $ -> 8 `i 165
  , $ -> 9 `i 166
- 155 ]
+ 167 ]
 [e :U 155 ]
-"114
-[; ;LCD.c: 114: }
+"116
+[; ;LCD.c: 116: }
 [e :UE 154 ]
 }

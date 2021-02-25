@@ -108,7 +108,9 @@ uint8_t ascii(uint8_t num) {
         case 9:
             ret = 0X39;
             break;
-
+        default:
+            ret = 0X40;
+            break;
 
     }
 }

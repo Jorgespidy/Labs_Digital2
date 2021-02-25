@@ -2801,6 +2801,10 @@ uint8_t slave3;
 uint8_t int1;
 uint8_t dec1;
 uint8_t int2;
+uint8_t cent1;
+uint8_t dec2;
+uint8_t aski;
+uint8_t aux;
 char caracteres[16];
 
 
@@ -2854,15 +2858,62 @@ void main(void) {
             dec1++;
         }
 
-        if (slave3 > 68){
+         if (slave3 > 68){
             slave3 = slave3 - 75;
         }
         else{
             slave3 = 75 - slave3;
         }
 
+        aux = slave3;
+        while(aux > 99){
+            aux = aux - 100;
+            cent1++;
+        }
+        while(aux > 9){
+            aux = aux - 10;
+            dec2++;
+        }
+
+
+
+
+
         sprintf(caracteres, "%1i.%1iv %3i %2i", int1, dec1, slave2, slave3);
         Lcd_Write_String(caracteres);
+
+
+         if (TXSTAbits.TRMT == 1){
+            aski = ascii (int1);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            TXREG = 0X2E;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            aski = ascii (dec1);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            TXREG = 0X20;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            aski = ascii (slave2);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            TXREG = 0X20;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            aski = ascii (cent1);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            aski = ascii (dec2);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            aski = ascii (aux);
+            TXREG = aski;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            TXREG = 0X0D;
+            _delay((unsigned long)((4)*(8000000/4000.0)));
+            cent1 = 0;
+            dec2 = 0;
+            aux = 0;
+        }
     }
 }
 
