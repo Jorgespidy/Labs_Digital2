@@ -1,4 +1,4 @@
-# 1 "master.c"
+# 1 "LCD.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "master.c" 2
-# 11 "master.c"
+# 1 "LCD.c" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2487,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 11 "master.c" 2
+# 1 "LCD.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,268 +2622,117 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 12 "master.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+# 2 "LCD.c" 2
 
 
 
 
 
+uint8_t ret;
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
+void Lcd_Port(char a) {
+    PORTD = a;
+}
 
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
+void Lcd_Cmd(char a)
 {
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
+    RC0 = 0;
+    Lcd_Port(a);
+    RC1 = 1;
+    _delay((unsigned long)((4)*(8000000/4000.0)));
+    RC1 = 0;
+}
 
+void Lcd_Clear() {
+    Lcd_Cmd(1);
+}
 
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
-
-
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 13 "master.c" 2
-
-# 1 "./SPI.h" 1
-# 17 "./SPI.h"
-typedef enum
-{
-    SPI_MASTER_OSC_DIV4 = 0b00100000,
-    SPI_MASTER_OSC_DIV16 = 0b00100001,
-    SPI_MASTER_OSC_DIV64 = 0b00100010,
-    SPI_MASTER_TMR2 = 0b00100011,
-    SPI_SLAVE_SS_EN = 0b00100100,
-    SPI_SLAVE_SS_DIS = 0b00100101
-}Spi_Type;
-
-typedef enum
-{
-    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
-    SPI_DATA_SAMPLE_END = 0b10000000
-}Spi_Data_Sample;
-
-typedef enum
-{
-    SPI_CLOCK_IDLE_HIGH = 0b00010000,
-    SPI_CLOCK_IDLE_LOW = 0b00000000
-}Spi_Clock_Idle;
-
-typedef enum
-{
-    SPI_IDLE_2_ACTIVE = 0b00000000,
-    SPI_ACTIVE_2_IDLE = 0b01000000
-}Spi_Transmit_Edge;
-
-
-void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
-void spiWrite(char);
-unsigned spiDataReady();
-char spiRead();
-# 14 "master.c" 2
-
-# 1 "./LCD.h" 1
-# 19 "./LCD.h"
-void Lcd_Port(char a);
-void Lcd_Cmd(char a);
-void Lcd_Clear();
-void Lcd_Set_Cursor(char a, char b);
-void Lcd_Init();
-void Lcd_Write_Char(char a);
-void Lcd_Write_String(char *a);
-void Lcd_Shift_Right();
-void Lcd_Shift_Left();
-uint8_t ascii(uint8_t num);
-# 15 "master.c" 2
-
-
-
-
-
-
-#pragma config FOSC = XT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 44 "master.c"
-uint8_t slave1;
-uint8_t slave2;
-uint8_t slave3;
-uint8_t int1;
-uint8_t dec1;
-uint8_t int2;
-char caracteres[16];
-
-
-
-void setup(void);
-
-
-
-
-
-void main(void) {
-    setup();
-    Lcd_Init();
-    Lcd_Clear();
-    while (1) {
-        PORTBbits.RB0 = 0;
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        spiWrite(1);
-        slave1 = spiRead();
-        int1 = 0;
-        dec1 = 0;
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        PORTBbits.RB0 = 1;
-
-        PORTBbits.RB1 = 0;
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        spiWrite(slave2);
-        slave2 = spiRead();
-
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        PORTBbits.RB1 = 1;
-
-        PORTBbits.RB2 = 0;
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        spiWrite(1);
-        slave3 = spiRead();
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        PORTBbits.RB2 = 1;
-
-
-        Lcd_Set_Cursor(1, 1);
-        Lcd_Write_String("ADC  CONT   TEMP");
-        Lcd_Set_Cursor(2, 1);
-
-        while (slave1 >= 50) {
-            slave1 = slave1 - 50;
-            int1++;
-        }
-        while (slave1 >= 5) {
-            slave1 = slave1 - 5;
-            dec1++;
-        }
-
-        if (slave3 > 68){
-            slave3 = slave3 - 75;
-        }
-        else{
-            slave3 = 75 - slave3;
-        }
-
-        sprintf(caracteres, "%1i.%1iv %3i %2i", int1, dec1, slave2, slave3);
-        Lcd_Write_String(caracteres);
+void Lcd_Set_Cursor(char a, char b) {
+    char temp;
+    if (a == 1) {
+        temp = 0x80 + b - 1;
+        Lcd_Cmd(temp);
+    } else if (a == 2) {
+        temp = 0xC0 + b - 1;
+        Lcd_Cmd(temp);
     }
 }
 
-void setup(void) {
+void Lcd_Init() {
+    Lcd_Port(0x00);
+    _delay((unsigned long)((20)*(8000000/4000.0)));
+    Lcd_Cmd(0x03);
+    _delay((unsigned long)((5)*(8000000/4000.0)));
+    Lcd_Cmd(0x03);
+    _delay((unsigned long)((11)*(8000000/4000.0)));
+    Lcd_Cmd(0x03);
 
-    ANSEL = 0;
-    ANSELH = 0;
-    TRISC = 0b00010000;
-    TRISB = 0;
-    TRISA = 0;
-    TRISD = 0;
-    PORTB = 0b00000111;
-    PORTA = 0;
-    PORTC = 0;
-    PORTD = 0b10101010;
 
-    INTCON = 0b11000000;
-    SPBRGH = 0;
-    SPBRG = 25;
-    BAUDCTL = 0x00;
-    TXSTA = 0b00100100;
-    RCSTA = 0b10010000;
+    Lcd_Cmd(0b00111000);
+    Lcd_Cmd(0b00001100);
+    Lcd_Cmd(0b00000001);
+    Lcd_Cmd(0b00000110);
 
-    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+}
+
+void Lcd_Write_Char(char a)
+{
+    RC0 = 1;
+    Lcd_Port(a);
+    RC1 = 1;
+    _delay((unsigned long)((40)*(8000000/4000000.0)));
+    RC1 = 0;
+}
+
+void Lcd_Write_String(char *a) {
+    int i;
+    for (i = 0; a[i] != '\0'; i++)
+        Lcd_Write_Char(a[i]);
+}
+
+void Lcd_Shift_Right() {
+    Lcd_Cmd(0x01);
+    Lcd_Cmd(0x0C);
+}
+
+void Lcd_Shift_Left() {
+    Lcd_Cmd(0x01);
+    Lcd_Cmd(0x08);
+}
+
+uint8_t ascii(uint8_t num) {
+    switch (num) {
+        case 0:
+            ret = 0X30;
+            break;
+        case 1:
+            ret = 0X31;
+            break;
+        case 2:
+            ret = 0X32;
+            break;
+        case 3:
+            ret = 0X33;
+            break;
+        case 4:
+            ret = 0X34;
+            break;
+        case 5:
+            ret = 0X35;
+            break;
+        case 6:
+            ret = 0X36;
+            break;
+        case 7:
+            ret = 0X37;
+            break;
+        case 8:
+            ret = 0X38;
+            break;
+        case 9:
+            ret = 0X39;
+            break;
+
+
+    }
 }

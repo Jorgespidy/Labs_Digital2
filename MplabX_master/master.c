@@ -10,7 +10,9 @@
 //*****************************************************************************
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "SPI.h"
+#include "LCD.h"
 
 //*****************************************************************************
 // Palabra de configuración
@@ -40,6 +42,12 @@
 #define _XTAL_FREQ 8000000
 
 uint8_t slave1;
+uint8_t slave2;
+uint8_t slave3;
+uint8_t int1;
+uint8_t dec1;
+uint8_t int2;
+char caracteres[16];
 //******************************************************************************
 // Prototipos de funciones
 //******************************************************************************
@@ -51,15 +59,56 @@ void setup(void);
 
 void main(void) {
     setup();
-    while (1){
+    Lcd_Init();
+    Lcd_Clear();
+    while (1) {
         PORTBbits.RB0 = 0;
         __delay_ms(1);
         spiWrite(1);
         slave1 = spiRead();
-        PORTD = slave1;
+        int1 = 0;
+        dec1 = 0;
         __delay_ms(1);
         PORTBbits.RB0 = 1;
-        
+
+        PORTBbits.RB1 = 0;
+        __delay_ms(1);
+        spiWrite(slave2);
+        slave2 = spiRead();
+        //int2 = 0;
+        __delay_ms(1);
+        PORTBbits.RB1 = 1;
+
+        PORTBbits.RB2 = 0;
+        __delay_ms(1);
+        spiWrite(1);
+        slave3 = spiRead();
+        __delay_ms(1);
+        PORTBbits.RB2 = 1;
+
+        //le hablamos a la LCD
+        Lcd_Set_Cursor(1, 1);
+        Lcd_Write_String("ADC  CONT   TEMP"); //titulos
+        Lcd_Set_Cursor(2, 1);
+        //para conversion del primer adc
+        while (slave1 >= 50) {//mapeo de valores binarios a voltaje
+            slave1 = slave1 - 50;
+            int1++;
+        }
+        while (slave1 >= 5) {
+            slave1 = slave1 - 5;
+            dec1++;
+        }
+        //para el termometro
+        if (slave3 > 68){
+            slave3 = slave3 - 75;
+        }
+        else{
+            slave3 = 75 - slave3;
+        }
+
+        sprintf(caracteres, "%1i.%1iv %3i %2i", int1, dec1, slave2, slave3);
+        Lcd_Write_String(caracteres);
     }
 }
 
@@ -75,8 +124,13 @@ void setup(void) {
     PORTA = 0;
     PORTC = 0;
     PORTD = 0b10101010;
-    
-   
-    
-     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    // config de la UART
+    INTCON = 0b11000000; // GIE, PEIE enable
+    SPBRGH = 0;
+    SPBRG = 25;
+    BAUDCTL = 0x00; //config del baudrate 9615
+    TXSTA = 0b00100100;
+    RCSTA = 0b10010000;
+
+    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }

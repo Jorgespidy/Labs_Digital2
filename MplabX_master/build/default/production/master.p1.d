@@ -1,3 +1,4 @@
 build/default/production/master.p1:  \
 master.c  \
-SPI.h 
+SPI.h  \
+LCD.h 
