@@ -1,0 +1,38 @@
+int count = 0;
+uint8_t hora;
+
+#define IO_LOOP_DELAY 5000
+unsigned long lastUpdate = 0;
+
+// set up de los feeds feed
+AdafruitIO_Feed *your_feed = io.feed("your_feed"); //esto por los leds y el sensor
+
+void setup() {
+
+ Serial.begin(115200);
+  Serial2.begin(9600);
+}
+
+void loop() {
+	io.run();
+	**select de los leds**
+	if cont == 0;
+	led1 = 0;
+	led2 = 0;
+
+	if cont == 1;
+	led1 = 1;
+	led2 = 0;
+
+	if cont == 2;
+	led1 = 0;
+	led2 = 1;
+
+	if cont == 3;
+	led1 = 1;
+	led2 = 1;
+
+
+	**implementar rutina para enviar hora**
+	Serial.println(hora);
+}

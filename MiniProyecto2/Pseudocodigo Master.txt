@@ -1,0 +1,30 @@
+PORTA = 0;
+    PORTC = 0;
+    PORTD = 0;
+    ANSEL = 0;
+ANSELH = 0;
+*GIE & PEIE enable
+* habilitar comunicacion I2C;
+// MAIN------------------------------------------------------------------------------------
+void main(void) {
+setup();
+    RTC Init();
+     while (1) {
+    	if (TXSTAbits.TRMT == 1) {
+           	  SendString("hora :");
+	   aski = ascii(hrora);
+            	   ready(aski);
+
+	  SendString("minutos :");
+	   aski = ascii(minutos);
+            	   ready(aski);
+
+	  SendString("segundos :");
+	   aski = ascii(segundos);
+            	   ready(aski);
+}
+
+void ready(char val) {
+        while (!TXIF);
+        TXREG = val;
+    }
