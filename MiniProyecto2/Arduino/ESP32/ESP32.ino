@@ -23,6 +23,9 @@
 int count = 0;
 uint8_t hora;
 String cadena;
+char estado = 0;
+char led1 = 0;
+char led2 = 0;
 
 
 // Track time of last published messages and limit feed->save events to once
@@ -41,16 +44,16 @@ unsigned long lastUpdate = 0;
 // set up de los feeds feed
 AdafruitIO_Feed *clocks = io.feed("clocks");
 AdafruitIO_Feed *redled = io.feed("redled");
-AdafruitIO_Feed *greenled = io.feed("greenled");
+AdafruitIO_Feed *blueled = io.feed("greenled");
 
 void setup() {
 
   // start the serial connection
   Serial.begin(115200);
-  Serial2.begin(9600,SERIAL_8N1,16,17);
+  Serial2.begin(9600);
 
   // wait for serial monitor to open
-  while(! Serial);
+  while (! Serial);
 
   Serial.print("Connecting to Adafruit IO");
 
@@ -61,12 +64,12 @@ void setup() {
   // the handleMessage function (defined below)
   // will be called whenever a message is
   // received from adafruit io.
-  
-  //redled->onMessage(handleMessage);
-  //greenled->onMessage(handleMessage);
+
+  redled->onMessage(handleLed1);
+  blueled->onMessage(handleLed2);
 
   // wait for a connection
-  while(io.status() < AIO_CONNECTED) {
+  while (io.status() < AIO_CONNECTED) {
     Serial.print(".");
     delay(500);
   }
@@ -74,9 +77,9 @@ void setup() {
   // we are connected
   Serial.println();
   Serial.println(io.statusText());
-  
-  //redled->get();
-  //greenled->get();
+
+  redled->get();
+  blueled->get();
 
 }
 
@@ -87,20 +90,22 @@ void loop() {
   // function. it keeps the client connected to
   // io.adafruit.com, and processes any incoming data.
   io.run();
- while (1){
-   if (Serial2.available()>0){
-  Serial.println(Serial2.read());
-   }
- }
-
+  estado = led1 + led2;
   if (millis() > (lastUpdate + IO_LOOP_DELAY)) {
-    // save count to the 'counter' feed on Adafruit IO
+
+
+    // save count to the 'enter' feed on Adafruit IO
     Serial.print("sending -> ");
-    Serial.println(cadena); //imprime con enter
     clocks->save(cadena);
+
+
+    // after publishing, store the current time
+    lastUpdate = millis();
+
     
-   /* if (Serial2.available()>0){
-      Serial2.write(1);
+  }
+  
+    if (Serial2.available() > 0) {
       cadena = "";
       cadena = cadena + char(Serial2.read());
       cadena = cadena + char(Serial2.read());
@@ -114,21 +119,38 @@ void loop() {
       cadena = cadena + char(Serial2.read());
       cadena = cadena + char(Serial2.read());
       cadena = cadena + char(Serial2.read());
-      Serial2.write(0);
-    }*/
-    
-    // after publishing, store the current time
-    lastUpdate = millis();
-  }
-
+      Serial.println(cadena);
+      Serial.println(estado);
+    }
+    Serial2.write(estado);
 }
+
 
 // this function is called whenever a 'counter' message
 // is received from Adafruit IO. it was attached to
 // the counter feed in the setup() function above.
-void handleMessage(AdafruitIO_Data *data) {
 
-  Serial.print("received <- ");
-  Serial.println(data->value());
 
+void handleLed1(AdafruitIO_Data *data) {
+
+  if (data -> isTrue()) {
+    led1 = 1;
+    Serial.println("Led1 = HIGH");
+  }
+  else {
+    Serial.println("Led1 = LOW");
+    led1 = 0;
+  }
+}
+
+void handleLed2(AdafruitIO_Data *data) {
+
+  if (data -> isTrue()) {
+    Serial.println("Led2 = HIGH");
+    led2 = 2;
+  }
+  else {
+    Serial.println("Led2 = LOW");
+    led2 = 0;
+  }
 }

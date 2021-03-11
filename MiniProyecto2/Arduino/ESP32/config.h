@@ -3,7 +3,7 @@
 // visit io.adafruit.com if you need to create an account,
 // or if you need your Adafruit IO key.
 #define IO_USERNAME  "jorgespidy"
-#define IO_KEY       "aio_cJrL62NJyS2zAja8eS1bep0s6TvY"
+#define IO_KEY       "aio_awlf72kMDxW6CPMfI8WMAi3fA6lc"
 
 /******************************* WIFI **************************************/
 
@@ -18,8 +18,8 @@
 //   https://www.adafruit.com/product/4000
 //   - Adafruit AirLift Breakout -> https://www.adafruit.com/product/4201
 
-#define WIFI_SSID "Nexxt_456560"
-#define WIFI_PASS "WadUFE3n"
+#define WIFI_SSID "HUAWEI P20 lite"
+#define WIFI_PASS "JageRules"
 
 // uncomment the following line if you are using airlift
 // #define USE_AIRLIFT
