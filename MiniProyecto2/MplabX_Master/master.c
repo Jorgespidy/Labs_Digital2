@@ -38,7 +38,7 @@
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 4000000
 
 uint8_t sec;
 uint8_t min;
@@ -52,6 +52,8 @@ uint8_t hr_u;
 uint8_t hr_d;
 uint8_t variable;
 uint8_t aski;
+uint8_t recepcion;
+char lec;
 
 
 //*****************************************************************************
@@ -62,7 +64,20 @@ void RTC_time(void);
 uint8_t conv(uint8_t bcd);
 void ready(char val);
 void SendString(char* val);
+void RTC_init(void);
 
+
+//*****************************************************************************
+//Vector de interrupcion
+//*****************************************************************************
+
+void __interrupt() isr(void) {
+    //Leer el RCREG si se tiene un dato disponible
+    if (PIR1bits.RCIF == 1) {
+        lec = RCREG;
+        PIR1bits.RCIF = 0;
+    }
+}
 
 
 //*****************************************************************************
@@ -70,10 +85,14 @@ void SendString(char* val);
 //*****************************************************************************
 
 void main(void) {
+    __delay_ms(1000);
     setup();
-
+    RTC_init();
     while (1) {
-
+      
+       
+        PORTA = lec;
+       
         RTC_time();
 
         hr_d = hr/10;
@@ -85,44 +104,43 @@ void main(void) {
         sec_d = sec/10;
         sec_u = sec - (sec_d*10);
         //Comunicacion UART
+        
         if (TXSTAbits.TRMT == 1) {
            
-            SendString("hora :");
-            __delay_ms(4);
-            TXREG = 0X20; //espacio
+            //SendString("hora :");
+            //__delay_ms(4);
+            //TXREG = 0X20; //espacio
             aski = ascii(hr_d);
-            TXREG = aski;
-            __delay_ms(4);
+            ready(aski);
             aski = ascii(hr_u);
-            TXREG = aski;
-            __delay_ms(4);
-            TXREG = 0X20; //espacio
+            ready(aski);
+            //TXREG = 0X20; //espacio
+            SendString(" : ");
             
-            SendString("min :");
-            __delay_ms(4);
-            TXREG = 0X20; //espacio
+            //SendString("min :");
+            //__delay_ms(4);
+            //TXREG = 0X20; //espacio
             aski = ascii(min_d);
-            TXREG = aski;
-            __delay_ms(4);
+            ready(aski);
             aski = ascii(min_u);
-            TXREG = aski;
-            __delay_ms(4);
-            TXREG = 0X20; //espacio
+            ready(aski);
+            //TXREG = 0X20; //espacio
+            SendString(" : ");
             
-            SendString("seg :");
-            __delay_ms(4);
-            TXREG = 0X20; //espacio
+            //SendString("seg :");
+            //__delay_ms(4);
+            //TXREG = 0X20; //espacio
             aski = ascii(sec_d);
-            TXREG = aski;
-            __delay_ms(4);
+            ready(aski);
             aski = ascii(sec_u);
-            TXREG = aski;
-            __delay_ms(4);
-            TXREG = 0X0D; //Enter
+            ready(aski);
+            //__delay_ms(4);
+            //TXREG = 0X0A; //Enter
             __delay_ms(300);
             
            
         }
+         
     }
 }
 
@@ -134,15 +152,21 @@ void main(void) {
         //Se limpian los tris a usar, los puertos y se setea el anselh
         ANSEL = 0;
         ANSELH = 0;
-        TRISC = 0b00010000;
+        TRISC = 0b00011000;
         TRISB = 0;
+        PORTE = 0;
+        PORTA = 0;
+        TRISA = 0;
+        TRISE = 0;
 
         I2C_Master_Init(100000);
 
         // config de la UART
         INTCON = 0b11000000; // GIE, PEIE enable
+        PIE1bits.RCIE = 1;
         SPBRGH = 0;
-        SPBRG = 51; //para 8MHz
+        BRGH = 1;
+        SPBRG = 25; //para 8MHz
         BAUDCTL = 0x00; //config del baudrate 9615
         TXSTA = 0b00100100;
         RCSTA = 0b10010000;
@@ -171,7 +195,7 @@ void main(void) {
         hr = conv(I2C_Master_Read(0) & 0b00111111); // lee nibble menos significativo de la hora. Master read en 0 porque es el  ultimo acknowledge bit
         
         I2C_Master_Stop();
-        __delay_ms(4);
+        __delay_ms(5);
     }
 
     uint8_t conv(uint8_t bcd) { //  convierte de BCD a binario
@@ -180,6 +204,17 @@ void main(void) {
         variable &= 0x78;
         return (variable + (variable >> 2)+ (bcd & 0x0F));
     }
+    
+    void RTC_init(void){
+        I2C_Master_Start();
+        I2C_Master_Write(0b11010000);
+        I2C_Master_Write(0x00);
+        I2C_Master_Write(0x00);
+        I2C_Master_Write(0x22);
+        I2C_Master_Write(0x41);
+        
+    }
+
      
 
     void ready(char val) {

@@ -2710,6 +2710,8 @@ uint8_t hr_u;
 uint8_t hr_d;
 uint8_t variable;
 uint8_t aski;
+uint8_t recepcion;
+char lec;
 
 
 
@@ -2720,7 +2722,20 @@ void RTC_time(void);
 uint8_t conv(uint8_t bcd);
 void ready(char val);
 void SendString(char* val);
+void RTC_init(void);
 
+
+
+
+
+
+void __attribute__((picinterrupt(("")))) isr(void) {
+
+    if (PIR1bits.RCIF == 1) {
+        lec = RCREG;
+        PIR1bits.RCIF = 0;
+    }
+}
 
 
 
@@ -2728,9 +2743,13 @@ void SendString(char* val);
 
 
 void main(void) {
+    _delay((unsigned long)((1000)*(4000000/4000.0)));
     setup();
-
+    RTC_init();
     while (1) {
+
+
+        PORTA = lec;
 
         RTC_time();
 
@@ -2743,44 +2762,43 @@ void main(void) {
         sec_d = sec/10;
         sec_u = sec - (sec_d*10);
 
+
         if (TXSTAbits.TRMT == 1) {
 
-            SendString("hora :");
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X20;
+
+
+
             aski = ascii(hr_d);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
+            ready(aski);
             aski = ascii(hr_u);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X20;
+            ready(aski);
 
-            SendString("min :");
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X20;
+            SendString(" : ");
+
+
+
+
             aski = ascii(min_d);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
+            ready(aski);
             aski = ascii(min_u);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X20;
+            ready(aski);
 
-            SendString("seg :");
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X20;
+            SendString(" : ");
+
+
+
+
             aski = ascii(sec_d);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
+            ready(aski);
             aski = ascii(sec_u);
-            TXREG = aski;
-            _delay((unsigned long)((4)*(8000000/4000.0)));
-            TXREG = 0X0D;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
+            ready(aski);
+
+
+            _delay((unsigned long)((300)*(4000000/4000.0)));
 
 
         }
+
     }
 }
 
@@ -2792,26 +2810,32 @@ void main(void) {
 
         ANSEL = 0;
         ANSELH = 0;
-        TRISC = 0b00010000;
+        TRISC = 0b00011000;
         TRISB = 0;
+        PORTE = 0;
+        PORTA = 0;
+        TRISA = 0;
+        TRISE = 0;
 
         I2C_Master_Init(100000);
 
 
         INTCON = 0b11000000;
+        PIE1bits.RCIE = 1;
         SPBRGH = 0;
-        SPBRG = 51;
+        BRGH = 1;
+        SPBRG = 25;
         BAUDCTL = 0x00;
         TXSTA = 0b00100100;
         RCSTA = 0b10010000;
     }
-# 158 "master.c"
+# 182 "master.c"
     void RTC_time(void) {
         I2C_Master_Start();
         I2C_Master_Write(0xD0);
         I2C_Master_Write(0x00);
         I2C_Master_Stop();
-        _delay((unsigned long)((4)*(8000000/4000.0)));
+        _delay((unsigned long)((4)*(4000000/4000.0)));
 
         I2C_Master_Start();
         I2C_Master_Write(0xD1);
@@ -2822,7 +2846,7 @@ void main(void) {
         hr = conv(I2C_Master_Read(0) & 0b00111111);
 
         I2C_Master_Stop();
-        _delay((unsigned long)((4)*(8000000/4000.0)));
+        _delay((unsigned long)((5)*(4000000/4000.0)));
     }
 
     uint8_t conv(uint8_t bcd) {
@@ -2831,6 +2855,17 @@ void main(void) {
         variable &= 0x78;
         return (variable + (variable >> 2)+ (bcd & 0x0F));
     }
+
+    void RTC_init(void){
+        I2C_Master_Start();
+        I2C_Master_Write(0b11010000);
+        I2C_Master_Write(0x00);
+        I2C_Master_Write(0x00);
+        I2C_Master_Write(0x22);
+        I2C_Master_Write(0x41);
+
+    }
+
 
 
     void ready(char val) {
