@@ -16,6 +16,9 @@ int flanco2 = 1;
 //inicio del semaforo
 int start = 0;
 
+//contadores
+int contp = 0;
+int contj = 0;
 
 
 
@@ -58,6 +61,32 @@ void loop() {
     delay(500);
     digitalWrite(GREEN_LED, LOW);
     
+  while (start != 1) {
+
+      //lectura de botones
+      state1 = digitalRead(PUSH1);
+      state2 = digitalRead(PUSH2);
+
+      //poll de los flancos 
+      if (state1 != flanco1) {
+        flanco1 = state1;
+        //si se presiona, aumentar el contador
+        if (state1 == LOW) {
+          contp++;
+         
+        }
+      }
+
+      else if (state2 != flanco2) {
+        flanco2 = state2;
+        if (state2 == LOW) {
+          contj++;
+          
+        }
+      }
+
+
+    }
+
   }
-  
 }
