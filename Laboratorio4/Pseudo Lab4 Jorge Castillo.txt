@@ -1,0 +1,59 @@
+
+const byte pin1 = 31; //Push1
+const byte pin2 = 17; //Push2
+volatile byte state = LOW;
+
+#define LED1 RED_LED
+#define LED2 BLUE_LED
+#define LED3 GREEN_LED
+
+volatile uint8_t state = 0;
+
+volatile uint8_t cont1 = 0;
+volatile uint8_t cont2 = 0;
+
+void setup(){
+  Serial.begin(115200); // baud rate
+  pinMode(LED1, OUTPUT);   
+  pinMode(LED2, OUTPUT); 
+  pinMode(LED3, OUTPUT); 
+  pinMode(pin1, INPUT_PULLUP);
+  pinMode(pin2, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(pin1), RISING); // para cuando el push se suelta
+  attachInterrupt(digitalPinToInterrupt(pin2), RISING);
+}
+
+void loop(){
+  	If (pin1 == 1) || (pin2 == 1){
+		semaforo();
+	}
+	if (LED3 == 1){
+		if (pin1 == 1){
+			cont1 = 2*cont1;
+		}
+		if (pin1 == 1){
+			cont2 = 2*cont2;
+		}
+	}
+}
+          
+
+void semaforo(){
+	LED1 = blink;
+	delay (100);
+	LED2 = blink;
+	delay (100);
+	LED3 = blink;
+	delay (100);
+}
+
+
+void blink() {
+  state = !state;
+}
+
+
+
+
+
+
