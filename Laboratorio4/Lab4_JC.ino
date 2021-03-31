@@ -82,6 +82,7 @@ void loop() {
 
   if ((state1 == LOW||state2 == LOW) && start == 1) {
     start = 0;
+    resetear();
     //Secuencia de inicio del semaforo
     digitalWrite(GREEN_LED, LOW); 
     digitalWrite(RED_LED, HIGH);
@@ -98,6 +99,10 @@ void loop() {
     digitalWrite(GREEN_LED, HIGH);
     delay(500);
     digitalWrite(GREEN_LED, LOW);
+
+    // resetear los contadores para iniciar de nuevo el juego
+    contp = 0;
+    contn = 0;
     
   while (start != 1) {
 
@@ -178,10 +183,12 @@ void luces(int i, int j) {
       digitalWrite(p7, HIGH);
     }
     if (i == 9) {
+      start = 1;
       digitalWrite(p7, LOW);
       digitalWrite(BLUE_LED, HIGH);
       delay(500);
       digitalWrite(BLUE_LED, LOW);
+      resetear();
     }
     }
 
@@ -236,13 +243,37 @@ void luces(int i, int j) {
       digitalWrite(n7, HIGH);
     }
     if (i == 9) {
+      start = 1;
       digitalWrite(n7, LOW);
       digitalWrite(BLUE_LED, HIGH);
       digitalWrite(RED_LED, HIGH);
       delay(500);
       digitalWrite(BLUE_LED, LOW);
       digitalWrite(RED_LED, LOW);
+      resetear();
     }
     }
  }
+
+ //Apagamos todos nuestros LEDS
+void resetear() {
+  digitalWrite(p0, LOW);
+  digitalWrite(p1, LOW);
+  digitalWrite(p2, LOW);
+  digitalWrite(p3, LOW);
+  digitalWrite(p4, LOW);
+  digitalWrite(p5, LOW);
+  digitalWrite(p6, LOW);
+  digitalWrite(p7, LOW);
+
+ digitalWrite(n0, LOW);
+ digitalWrite(n1, LOW);
+ digitalWrite(n2, LOW);
+ digitalWrite(n3, LOW);
+ digitalWrite(n4, LOW);
+ digitalWrite(n5, LOW);
+ digitalWrite(n6, LOW);
+ digitalWrite(n7, LOW); 
+      
+}
     
