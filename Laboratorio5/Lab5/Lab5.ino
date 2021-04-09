@@ -3,16 +3,17 @@
 //Digital 2 - Seccion 20
 //Jorge Castillo - 18209
 
-
+// se incluyen las librerias
 #include <SPI.h>
 #include <SD.h>
 
-//File archivo;
+// defino mis variables
+File archivo;
 File root;
 
-int opcion = 0;
-
+int opcion;
 void opciones(void);
+void mostrar(void);
 
 void setup()
 {
@@ -33,10 +34,18 @@ void setup()
 
 
 void loop() {
-  // put your main code here, to run repeatedly: 
-  
-}
 
+  if (Serial.available() > 0){
+   opcion = Serial.read();
+   delay(250);
+   if (opcion == '1' || opcion == '2' || opcion == '3' || opcion == '4' ){
+    mostrar();
+   }
+   else {
+     Serial.println("Por favor ingrese otro numero ");
+  }
+  }
+}
 
 void opciones(void) {
   Serial.println();
@@ -44,7 +53,7 @@ void opciones(void) {
   root = SD.open("/");
   printDirectory(root, 0);
   root.close();
-  
+  Serial.println("Ingrese el numero de imagen que quiere visualizar: \n 1 -> Calabaza \n 2 -> Corazon \n 3 -> Dino \n 4 -> Ghost");
 }
 
 void printDirectory(File dir, int numTabs) {
@@ -69,4 +78,70 @@ void printDirectory(File dir, int numTabs) {
      }
      entry.close();
    }
+}
+
+void mostrar(void){
+  switch (opcion){
+    case '1':
+     archivo = SD.open("Calabaza.txt");
+      if (archivo) {
+        // read from the file until there's nothing else in it:
+        while (archivo.available()) {
+          Serial.write(archivo.read());
+        }
+        // close the file:
+        archivo.close();
+      } else {
+        // if the file didn't open, print an error:
+        Serial.println("error opening document");
+      }
+      Serial.println("Ingrese el numero de imagen que quiere visualizar: \n 1 -> Calabaza \n 2 -> Corazon \n 3 -> Dino \n 4 -> Ghost");
+     break;
+    case '2':
+     archivo = SD.open("Corazon.txt");
+      if (archivo) {
+        // read from the file until there's nothing else in it:
+        while (archivo.available()) {
+          Serial.write(archivo.read());
+        }
+        // close the file:
+        archivo.close();
+      } else {
+        // if the file didn't open, print an error:
+        Serial.println("error opening document");
+      }
+      Serial.println("Ingrese el numero de imagen que quiere visualizar: \n 1 -> Calabaza \n 2 -> Corazon \n 3 -> Dino \n 4 -> Ghost");
+     break;
+    case '3':
+     archivo = SD.open("Dino.txt");
+      if (archivo) {
+        // read from the file until there's nothing else in it:
+        while (archivo.available()) {
+          Serial.write(archivo.read());
+        }
+        // close the file:
+        archivo.close();
+      } else {
+        // if the file didn't open, print an error:
+        Serial.println("error opening document");
+      }
+      Serial.println("Ingrese el numero de imagen que quiere visualizar: \n 1 -> Calabaza \n 2 -> Corazon \n 3 -> Dino \n 4 -> Ghost");
+     break;
+    case '4':
+     archivo = SD.open("Ghost.txt");
+      if (archivo) {
+        // read from the file until there's nothing else in it:
+        while (archivo.available()) {
+          Serial.write(archivo.read());
+        }
+        // close the file:
+        archivo.close();
+      } else {
+        // if the file didn't open, print an error:
+        Serial.println("error opening document");
+      }
+      Serial.println("Ingrese el numero de imagen que quiere visualizar: \n 1 -> Calabaza \n 2 -> Corazon \n 3 -> Dino \n 4 -> Ghost");
+     break;
+     
+  }
 }
