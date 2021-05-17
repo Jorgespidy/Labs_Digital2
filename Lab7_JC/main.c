@@ -23,11 +23,15 @@
 char estado = 0;
 int led;
 char dato = 0;
+int xr = 0;
+int xb = 0;
+int xg = 0;
 //***************************************************************
 //FUNCIONES PROTOTIPO
 //***************************************************************
  extern void Timer0IntHandler(void);
  extern void UARTIntHandler(void);
+ void toggle(void);
 
  //***************************************************************
  //MAIN
@@ -59,6 +63,22 @@ int main(void)
     UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
     UARTIntRegister(UART0_BASE, UARTIntHandler);
 
+    UARTCharPut(UART0_BASE, 'E');
+    UARTCharPut(UART0_BASE, 'l');
+    UARTCharPut(UART0_BASE, 'e');
+    UARTCharPut(UART0_BASE, 'g');
+    UARTCharPut(UART0_BASE, 'i');
+    UARTCharPut(UART0_BASE, 'r');
+    UARTCharPut(UART0_BASE, ' ');
+    UARTCharPut(UART0_BASE, 'r');
+    UARTCharPut(UART0_BASE, ',');
+    UARTCharPut(UART0_BASE, 'g');
+    UARTCharPut(UART0_BASE, ' ');
+    UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, ' ');
+    UARTCharPut(UART0_BASE, 'b');
+    UARTCharPut(UART0_BASE, ':');
+    UARTCharPut(UART0_BASE, 10);
 
 
 
@@ -66,7 +86,7 @@ int main(void)
 
 void Timer0IntHandler(void) {
     // Clear the timer interrupt
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);// switch case del toggle entre encendido y apagado
     switch(estado){
     case 0:
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, led);
@@ -79,10 +99,33 @@ void Timer0IntHandler(void) {
     }
 }
 
-void UARTIntHandler(){
-    UARTIntClear (UART0_BASE, UART_INT_RX);
-    dato = UARTCharGet(UART0_BASE);
 
+void UARTIntHandler(){
+    UARTIntClear (UART0_BASE, UART_INT_RX);// cada vez que se recibe un dato
+    dato = UARTCharGet(UART0_BASE);
+    if (xr == 2 || xb == 2 || xg == 2){// si se presiona 2 veces deja de pulsar
+        xr = 0;
+        xb = 0;
+        xg = 0;
+        dato = 0;
+    }
+    toggle();
 }
 
-
+void toggle(void){
+    if(dato == 'r') {
+        led = 2;
+        xr++;// contador que controla cuantas veces se presiona la tecla
+    }
+    else if(dato == 'b') {
+        led = 4;
+        xb++;
+    }
+    else if(dato == 'g') {
+        led = 8;
+        xg++;
+    }
+    else{
+        led = 0;
+    }
+}
