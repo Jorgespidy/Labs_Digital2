@@ -19,11 +19,7 @@
 //***************************************************************
 //VARIABLES
 //***************************************************************
-int estado = 0;
-char push1 = 0;
-char push2 = 0;
-char push3 = 0;
-char push4 = 0;
+
 char display = 0;
 
 //***************************************************************
@@ -47,12 +43,13 @@ int main(void)
 
 
     //Habilitar UART1
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);// enable GPIO port C
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);// enable clock port C
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);// enable clock UART1
     GPIOPinConfigure(GPIO_PC4_U1RX);
     GPIOPinConfigure(GPIO_PC5_U1TX);
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
     UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200, UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE); // config
+    UARTEnable(UART1_BASE);
 
 
     //Salida de LEDs
@@ -76,30 +73,38 @@ int main(void)
         if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_0) == 0){
             GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_3, 8);
             display ++;
+            UARTCharPut(UART1_BASE, '1');
         }
         else if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_0) == 1){
             GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_3, 0);
+            UARTCharPut(UART1_BASE, '2');
             }
         if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_1) == 0){
             GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 10);
             display ++;
+            UARTCharPut(UART1_BASE, '3');
         }
         else if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_1) == 1){
             GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 0);
+            UARTCharPut(UART1_BASE, '4');
             }
         if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_2) == 0){
             GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 80);
             display ++;
+            UARTCharPut(UART1_BASE, '5');
         }
         else if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_2) == 1){
             GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0);
+            UARTCharPut(UART1_BASE, '6');
             }
         if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_3) == 0){
             GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, 40);
             display ++;
+            UARTCharPut(UART1_BASE, '7');
         }
         else if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_3) == 1){
             GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, 0);
+            UARTCharPut(UART1_BASE, '8');
             }
 
         }
