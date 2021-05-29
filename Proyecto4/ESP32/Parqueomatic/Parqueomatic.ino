@@ -14,24 +14,22 @@
 // Variables globales
 //************************************************************************************************
 // SSID & Password
-const char* ssid = "CUCV-3NORTE";  // Enter your SSID here
-const char* password = " ";  //Enter your Password here
+const char* ssid = "Jorge’s iPhone";  // Enter your SSID here
+const char* password = "jagerules";  //Enter your Password here
 
 WebServer server(80);  // Object of WebServer(HTTP port, 80 is defult)
 
-
-uint8_t LED1pin = 2;
-bool LED1status = LOW;
-
-bool p1 = HIGH;
-bool p2 = HIGH;
-bool p3 = HIGH;
-bool p4 = HIGH;
-unsigned char disp;
+int p1;
+int p2;
+int p3;
+int p4;
+int cant;
 
 #define RX2 16
 #define TX2 17
 
+String libre = "\t <td style=\"background-color: #41A317;\"><h2><span style='font-size:100px;'>&#10004</h2></td>\t\n"; //se muestra en la tabla cuando haya un parqueo libre
+String ocupado = "\t <td style=\"background-color: #E41B17;\"><h2><span style='font-size:100px;'>&#9940</h2></td>\t\n"; //cuando haya un parqueo ocupado
 //************************************************************************************************
 // Configuración
 //************************************************************************************************
@@ -44,7 +42,7 @@ void setup() {
   Serial.println("Try Connecting to ");
   Serial.println(ssid);
 
-  pinMode(LED1pin, OUTPUT);
+
 
   // Connect to your wi-fi modem
   WiFi.begin(ssid, password);
@@ -60,9 +58,8 @@ void setup() {
   Serial.print("Got IP: ");
   Serial.println(WiFi.localIP());  //Show ESP32 IP on serial
 
-  server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
-  server.on("/led1on", handle_led1on);
-  server.on("/led1off", handle_led1off);
+  server.on("/", handle_OnConnect); // para conexion ip
+  
   
   server.onNotFound(handle_NotFound);
 
@@ -77,104 +74,152 @@ void loop() {
   server.handleClient();
 
   if (Serial2.available() > 0) { //se guarda lo que le entra al UART2
-    disp = Serial2.read();
+    cant = Serial2.read();// aqui se guardan los valores binarios del UART1 de la TIVA
   }
-  // parqueo 1
-  if (disp == "1") { 
-    p1 = LOW;
+  // parqueo 4
+  if(cant >= 8){
+     p4 = 1;
+     cant = cant - 8;
   }
-  else if (disp == "2") {
-    p1 = HIGH; 
-  }
-
-    // parqueo 2
-  if (disp == "3") { 
-    p1 = LOW;
-  }
-  else if (disp == "4") {
-    p1 = HIGH; 
+  else{
+    p4 = 0;
   }
 
     // parqueo 3
-  if (disp == "5") { 
-    p1 = LOW;
+  if(cant >= 4){
+     p3 = 1;
+     cant = cant - 4;
   }
-  else if (disp == "6") {
-    p1 = HIGH; 
-  }
-
-    // parqueo 4
-  if (disp == "7") { 
-    p1 = LOW;
-  }
-  else if (disp == "8") {
-    p1 = HIGH; 
+  else{
+    p3 = 0;
   }
 
+    // parqueo 2
+  if(cant >= 2){
+     p2 = 1;
+     cant = cant - 2;
+  }
+  else{
+    p2 = 0;
+  }
 
+    // parqueo 1
+  if(cant >= 1){
+     p1 = 1;
+     cant = cant - 1;
+  }
+  else{
+    p1 = 0;
+  }
   
-  if (LED1status)
-  {
-    digitalWrite(LED1pin, HIGH);
-  }
-  else
-  {
-    digitalWrite(LED1pin, LOW);
-  }
+
 }
 //************************************************************************************************
 // Handler de Inicio página
 //************************************************************************************************
 void handle_OnConnect() {
-  LED1status = LOW;
-  Serial.println("GPIO2 Status: OFF");
-  server.send(200, "text/html", SendHTML(LED1status));
-}
-//************************************************************************************************
-// Handler de led1on
-//************************************************************************************************
-void handle_led1on() {
-  LED1status = HIGH;
-  Serial.println("GPIO2 Status: ON");
-  server.send(200, "text/html", SendHTML(LED1status));
-}
-//************************************************************************************************
-// Handler de led1off
-//************************************************************************************************
-void handle_led1off() {
-  LED1status = LOW;
-  Serial.println("GPIO2 Status: OFF");
-  server.send(200, "text/html", SendHTML(LED1status));
+ 
+  server.send(10, "text/html", SendHTML2());
 }
 //************************************************************************************************
 // Procesador de HTML
 //************************************************************************************************
-String SendHTML(uint8_t led1stat) {
+String SendHTML2() {
   String ptr = "<!DOCTYPE html> <html>\n";
   ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
-  ptr += "<title>LED Control</title>\n";
+  ptr += "<title>Parqueo-MATIC</title>\n";
   ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
-  ptr += "body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
-  ptr += ".button {display: block;width: 80px;background-color: #3498db;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}\n";
-  ptr += ".button-on {background-color: #3498db;}\n";
-  ptr += ".button-on:active {background-color: #2980b9;}\n";
+  ptr += "body{margin-top: 50px;} h1 {color: #E5E4E2;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";//platinum
+  ptr += "table {";
+  ptr += "  font-family: Helvetica, sans-serif;";
+  ptr += "  border-collapse: collapse;";
+  ptr += "  width: 100%;";
+  ptr += "  margin: 50px auto 30px;";
+  ptr += "  text-align: center;";
+  ptr += "}";
+  ptr += "td, th {";
+  ptr += " border: 2px solid #101010;";
+  ptr += " text-align: center;";
+  ptr += " padding: 12px;  ";
+  ptr += "  background-color: #C19A6B;";
+  ptr += "}";
+  ptr += "tr:nth-child(even) {";
+  ptr += "  background-color: #FFFFFF;";
+  ptr += "}  ";
+  ptr += ".button {display: block;width: 80px;background-color: #C19A6B;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}\n";
+  ptr += ".button-on {background-color: #C19A6B;}\n";
+  ptr += ".button-on:active {background-color: #C19A6B;}\n";
   ptr += ".button-off {background-color: #34495e;}\n";
   ptr += ".button-off:active {background-color: #2c3e50;}\n";
   ptr += "p {font-size: 14px;color: #888;margin-bottom: 10px;}\n";
   ptr += "</style>\n";
   ptr += "</head>\n";
   ptr += "<body>\n";
-  ptr += "<h1>ESP32 Web Server &#128664</h1>\n";
-  ptr += "<h3>Ejemplo de Web Server</h3>\n";
+  ptr += "<h1>Parqueo MATIC &#128664</h1>\n";
+  ptr += "<h3>Jorge Castillo - 18209 </h3>\n";
+  ptr += "<h2> </h2>";
 
-  if (led1stat)
-  {
-    ptr += "<p>LED1 Status: ON</p><a class=\"button button-off\" href=\"/led1off\">OFF</a>\n";
+
+
+  //************************ REFRESH 1HZ********************************
+  ptr += "<script>\n";
+  ptr += "<!--\n";
+  ptr += "function timedRefresh(timeoutPeriod) {\n";
+  ptr += "\tsetTimeout(\"location.reload(true);\",timeoutPeriod);\n";
+  ptr += "}\n";
+  ptr += "\n";
+  ptr += "window.onload = timedRefresh(400);\n";
+  ptr += "\n";
+  ptr += "//   -->\n";
+  ptr += "</script>";
+  //********************************************************************
+
+  //******************Tabla de parqueos******************************
+  ptr += "</head>\n";
+  ptr += "<body>\n";
+
+  ptr += "<table>";
+  ptr += " <table style= margin: 0 auto;>";
+  ptr += " <tr>";
+  ptr += "   <th><span style='font-size:40px;'>Parqueo 1</th>";
+  ptr += "   <th><span style='font-size:40px;'>Parqueo 2 </th>";
+  ptr += "   <th><span style='font-size:40px;'>Parqueo 3 </th>";
+  ptr += "   <th><span style='font-size:40px;'>Parqueo 4</th>";
+  ptr += " </tr>";
+  ptr += "  <tr>";
+
+  // Parqueo 1
+  if (p1 == 0) {
+    ptr += libre;
   }
-  else
-  {
-    ptr += "<p>LED1 Status: OFF</p><a class=\"button button-on\" href=\"/led1on\">ON</a>\n";
+  else if (p1 == 1) {
+    ptr += ocupado;
   }
+
+  // Parqueo 2
+  if (p2 == 0) {
+   ptr += libre;
+  }
+  else if (p2 == 1) {
+    ptr += ocupado;
+  }
+
+  //Parqueo 3
+  if (p3 == 0) {
+    ptr +=  libre;
+  }
+  else if (p3 == 1) {
+    ptr += ocupado;
+  }
+
+// Parqueo 4
+  if (p4 == 0) {
+    ptr += libre;
+  }
+  else if (p4 == 1) {
+    ptr += ocupado;
+  }
+  
 
   ptr += "</body>\n";
   ptr += "</html>\n";
